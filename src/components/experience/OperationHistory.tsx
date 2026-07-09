@@ -98,7 +98,7 @@ export default function OperationHistory() {
             <div className="modal-scanline-overlay" aria-hidden="true" />
             <HudPanel
               variant="green"
-              className="max-h-[85vh] overflow-hidden relative"
+              className="max-h-[80vh] overflow-hidden relative"
             >
               <button
                 type="button"
