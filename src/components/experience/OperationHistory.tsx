@@ -78,6 +78,7 @@ export default function OperationHistory() {
           aria-modal="true"
           className="
           modal-backdrop-in
+          modal-viewport
             fixed
             inset-0
             z-50
@@ -85,7 +86,6 @@ export default function OperationHistory() {
             items-center
             justify-center
             bg-black/75
-            p-4
             backdrop-blur-sm
           "
           onMouseDown={(event) => {
@@ -94,11 +94,11 @@ export default function OperationHistory() {
             }
           }}
         >
-          <div className="modal-panel-in relative ">
+          <div className="modal-panel-in modal-panel-size relative ">
             <div className="modal-scanline-overlay" aria-hidden="true" />
             <HudPanel
               variant="green"
-              className="operation-modal h-[90vh] w-[90vw] overflow-hidden relative"
+              className="operation-modal h-full w-full overflow-hidden relative"
             >
               <button
                 type="button"

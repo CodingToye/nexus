@@ -55,6 +55,24 @@
   min-height: 0;
 }
 
+.modal-viewport {
+  --modal-gap-top: max(24px, env(safe-area-inset-top));
+  --modal-gap-right: max(16px, env(safe-area-inset-right));
+  --modal-gap-bottom: max(24px, env(safe-area-inset-bottom));
+  --modal-gap-left: max(16px, env(safe-area-inset-left));
+
+  padding-top: var(--modal-gap-top);
+  padding-right: var(--modal-gap-right);
+  padding-bottom: var(--modal-gap-bottom);
+  padding-left: var(--modal-gap-left);
+}
+
+.modal-panel-size {
+  width: min(90vw, 56rem);
+  height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
+  max-height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
+}
+
 .hero {
   filter: drop-shadow(0 1px 3px);
 }
