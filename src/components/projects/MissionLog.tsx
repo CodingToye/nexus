@@ -94,13 +94,21 @@ export default function MissionLog({}) {
             lg:w-48
           "
               >
-                <Image
-                  src={project.avatar}
-                  alt={`${project.title} cyberpunk avatar`}
-                  fill
-                  priority={index === 0}
-                  className="object-cover"
-                />
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={project.href}
+                  className="oxanium break-all text-xs text-hud-pink uppercase transition duration-300 hover:text-hud-pink-dark"
+                >
+                  <Image
+                    src={project.avatar}
+                    alt={`${project.title} cyberpunk avatar`}
+                    fill
+                    priority={index === 0}
+                    className="object-cover"
+                  />
+                </a>
               </div>
             </div>
           </article>
