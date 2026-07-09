@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import HudPanel from "@/components/hud/HudPanel";
 import { experience, type ExperienceItem } from "@/data/experience";
 import GlitchText from "../effects/GlitchText";
@@ -8,6 +8,21 @@ import { CirclePower } from "lucide-react";
 
 export default function OperationHistory() {
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+    };
+  }, [selectedItem]);
 
   const miniPanelStyle = {
     "--border": "var(--color-hud-green)",
@@ -79,9 +94,9 @@ export default function OperationHistory() {
             }
           }}
         >
-          <div className="modal-panel-in w-full max-w-4xl">
+          <div className="modal-panel-in relative w-full max-w-4xl">
             <div className="modal-scanline-overlay" aria-hidden="true" />
-            <HudPanel variant="green" className="max-h-[85vh] overflow-y-auto">
+            <HudPanel variant="green" className="max-h-[85vh] overflow-hidden">
               <div className="flex items-start justify-between gap-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-hud-green">
@@ -156,19 +171,30 @@ export default function OperationHistory() {
                   </div>
                 </div>
 
-                <div className="modal-reveal-section mt-6">
-                  <p className=" text-xs uppercase tracking-[0.25em] text-hud-muted">
+                <div className="modal-reveal-section mt-6 min-h-0">
+                  <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
                     Field Notes
                   </p>
 
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
-                    {selectedItem.summary.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="text-hud-green">&gt;</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div
+                    className="
+                    mt-4
+                    max-h-[28vh]
+                    overflow-y-auto
+                    pr-3
+                    [scrollbar-color:var(--color-hud-green)_transparent]
+                    [scrollbar-width:thin]
+                  "
+                  >
+                    <ul className="space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
+                      {selectedItem.summary.map((point) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="text-hud-green">&gt;</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </HudPanel>

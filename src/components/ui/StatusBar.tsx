@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 export default function StatusBar() {
   return (
     <div className="status-bar flex flex-col gap-4 md:flex-row justify-between mb-4 bg-black/50 border border-hud-cyan/20 p-2">
-      <div className="flex flex-grow gap-2 uppercase oxanium text-hud-cyan opacity-70">
+      <div className="flex flex-grow gap-2 uppercase oxanium text-hud-cyan opacity-70 justify-around md:justify-normal">
         <p className="text-hud-pink">_Nexus</p>
         <span>/ /</span>
         <p>
