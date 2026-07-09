@@ -68,9 +68,11 @@
 }
 
 .modal-panel-size {
-  width: min(90vw, 56rem);
-  height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
-  max-height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
+  @media only screen and (max-width: 640px) {
+    width: min(90vw, 56rem);
+    height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
+    max-height: calc(100dvh - var(--modal-gap-top) - var(--modal-gap-bottom));
+  }
 }
 
 .hero {

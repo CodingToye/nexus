@@ -28,7 +28,14 @@
   --color-foreground: var(--foreground);
 }
 
+html,
 body {
+  min-height: 100%;
+  background: var(--color-hud-bg);
+}
+
+body {
+  min-height: 100dvh;
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
 }
