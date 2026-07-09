@@ -96,8 +96,32 @@ export default function OperationHistory() {
         >
           <div className="modal-panel-in relative w-full max-w-4xl">
             <div className="modal-scanline-overlay" aria-hidden="true" />
-            <HudPanel variant="green" className="max-h-[85vh] overflow-hidden">
-              <div className="flex items-start justify-between gap-6">
+            <HudPanel
+              variant="green"
+              className="max-h-[85vh] overflow-hidden relative"
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedItem(null)}
+                className="
+                    cursor-pointer
+                    px-3
+                    py-1
+                    text-sm
+                    uppercase
+                    text-hud-muted
+                    transition
+                    
+                    hover:text-hud-green
+                    oxanium
+                    absolute
+                    -top-4
+                    -right-4
+                  "
+              >
+                <CirclePower />
+              </button>
+              <div className="">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-hud-green">
                     Operation File
@@ -114,25 +138,6 @@ export default function OperationHistory() {
                     {selectedItem.location} / / {selectedItem.period}
                   </p>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedItem(null)}
-                  className="
-                    cursor-pointer
-                    px-3
-                    py-1
-                    text-sm
-                    uppercase
-                    text-hud-muted
-                    transition
-                    
-                    hover:text-hud-green
-                    oxanium
-                  "
-                >
-                  <CirclePower />
-                </button>
               </div>
               <div className="modal-body-reveal">
                 <div className="modal-reveal-section mt-6 border-t border-white/10 pt-6">
