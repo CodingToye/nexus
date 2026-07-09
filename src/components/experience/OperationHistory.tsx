@@ -94,35 +94,35 @@ export default function OperationHistory() {
             }
           }}
         >
-          <div className="modal-panel-in relative w-full max-w-4xl">
+          <div className="modal-panel-in relative ">
             <div className="modal-scanline-overlay" aria-hidden="true" />
             <HudPanel
               variant="green"
-              className="max-h-[80vh] overflow-hidden relative"
+              className="operation-modal h-[90vh] w-[90vw] overflow-hidden relative"
             >
               <button
                 type="button"
                 onClick={() => setSelectedItem(null)}
                 className="
-                    cursor-pointer
-                    px-3
-                    py-1
-                    text-sm
-                    uppercase
-                    text-hud-muted
-                    transition
-                    
-                    hover:text-hud-green
-                    oxanium
-                    absolute
-                    -top-4
-                    -right-4
-                  "
+    absolute
+    -top-4
+    -right-4
+    cursor-pointer
+    px-3
+    py-1
+    text-sm
+    uppercase
+    text-hud-muted
+    transition
+    hover:text-hud-green
+    oxanium
+  "
               >
                 <CirclePower />
               </button>
-              <div className="">
-                <div>
+
+              <div className="flex h-full min-h-0 flex-col">
+                <div className="shrink-0">
                   <p className="text-xs uppercase tracking-[0.3em] text-hud-green">
                     Operation File
                   </p>
@@ -138,67 +138,69 @@ export default function OperationHistory() {
                     {selectedItem.location} / / {selectedItem.period}
                   </p>
                 </div>
-              </div>
-              <div className="modal-body-reveal">
-                <div className="modal-reveal-section mt-6 border-t border-white/10 pt-6">
-                  <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
-                    Assigned Role
-                  </p>
 
-                  <p className="mt-2 text-xl uppercase text-hud-green oxanium">
-                    {selectedItem.role}
-                  </p>
-                </div>
+                <div className="modal-body-reveal flex min-h-0 flex-1 flex-col">
+                  <div className="modal-reveal-section mt-6 shrink-0 border-t border-white/10 pt-6">
+                    <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
+                      Assigned Role
+                    </p>
 
-                <div className="modal-reveal-section mt-6">
-                  <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
-                    Loadout
-                  </p>
-
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {selectedItem.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="
-                        border
-                        border-hud-green/40
-                        px-3
-                        py-1
-                        text-xs
-                        uppercase
-                        tracking-wider
-                        text-hud-green
-                      "
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <p className="mt-2 text-xl uppercase text-hud-green oxanium">
+                      {selectedItem.role}
+                    </p>
                   </div>
-                </div>
 
-                <div className="modal-reveal-section mt-6 min-h-0">
-                  <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
-                    Field Notes
-                  </p>
+                  <div className="modal-reveal-section mt-6 shrink-0">
+                    <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
+                      Loadout
+                    </p>
 
-                  <div
-                    className="
-                    mt-4
-                    max-h-[28vh]
-                    overflow-y-auto
-                    pr-3
-                    [scrollbar-color:var(--color-hud-green)_transparent]
-                    [scrollbar-width:thin]
-                  "
-                  >
-                    <ul className="space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
-                      {selectedItem.summary.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span className="text-hud-green">&gt;</span>
-                          <span>{point}</span>
-                        </li>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {selectedItem.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="
+              border
+              border-hud-green/40
+              px-3
+              py-1
+              text-xs
+              uppercase
+              tracking-wider
+              text-hud-green
+            "
+                        >
+                          {tech}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
+                  </div>
+
+                  <div className="modal-reveal-section mt-6 flex min-h-0 flex-1 flex-col pb-6">
+                    <p className="shrink-0 text-xs uppercase tracking-[0.25em] text-hud-muted">
+                      Field Notes
+                    </p>
+
+                    <div
+                      className="
+          mt-4
+          min-h-0
+          flex-1
+          overflow-y-auto
+          pr-3
+          [scrollbar-color:var(--color-hud-green)_transparent]
+          [scrollbar-width:thin]
+        "
+                    >
+                      <ul className="space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
+                        {selectedItem.summary.map((point) => (
+                          <li key={point} className="flex gap-3">
+                            <span className="text-hud-green">&gt;</span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

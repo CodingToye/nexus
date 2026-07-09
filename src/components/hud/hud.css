@@ -50,6 +50,11 @@
   cursor: pointer;
 }
 
+.operation-modal .hud-content {
+  height: 100%;
+  min-height: 0;
+}
+
 .hero {
   filter: drop-shadow(0 1px 3px);
 }
