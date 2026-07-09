@@ -1,0 +1,295 @@
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  color: currentColor;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.glitch-text > span {
+  position: relative;
+  z-index: 2;
+  animation: glitch-main 2.8s steps(2, end) infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.glitch-text::before {
+  color: var(--color-hud-pink);
+  z-index: 1;
+  animation:
+    glitch-paths 2.8s step-end infinite,
+    glitch-opacity 2.8s step-end infinite,
+    glitch-move-a 2.8s step-end infinite;
+}
+
+.glitch-text::after {
+  color: var(--color-hud-cyan);
+  z-index: 1;
+  animation:
+    glitch-paths 2.8s step-end infinite reverse,
+    glitch-opacity 2.8s step-end infinite,
+    glitch-move-b 2.8s step-end infinite;
+}
+
+@keyframes glitch-main {
+  0%,
+  68%,
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  69% {
+    opacity: 0.4;
+    filter: blur(2px) brightness(2);
+    transform: translateX(-3px) skewX(-8deg);
+  }
+
+  70% {
+    opacity: 1;
+    filter: none;
+    transform: translateX(4px) skewX(6deg);
+  }
+
+  71% {
+    opacity: 0.15;
+    filter: blur(4px);
+    transform: translateX(-8px);
+  }
+
+  72% {
+    opacity: 1;
+    filter: brightness(1.8);
+    transform: translateX(2px);
+  }
+
+  74% {
+    transform: none;
+    filter: none;
+  }
+
+  88% {
+    opacity: 1;
+    transform: none;
+  }
+
+  89% {
+    opacity: 0.2;
+    transform: translateX(6px) skewX(10deg);
+    filter: blur(3px) brightness(2.5);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateX(-4px) skewX(-6deg);
+    filter: none;
+  }
+
+  91% {
+    transform: none;
+  }
+}
+
+@keyframes glitch-opacity {
+  0%,
+  66%,
+  75%,
+  86%,
+  93%,
+  100% {
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 0.9;
+  }
+
+  69% {
+    opacity: 0.25;
+  }
+
+  71% {
+    opacity: 1;
+  }
+
+  73% {
+    opacity: 0.45;
+  }
+
+  87% {
+    opacity: 0.8;
+  }
+
+  89% {
+    opacity: 1;
+  }
+
+  91% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes glitch-move-a {
+  0%,
+  66%,
+  75%,
+  86%,
+  93%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  67% {
+    transform: translate(-14px, -3px);
+  }
+
+  69% {
+    transform: translate(10px, 2px);
+  }
+
+  71% {
+    transform: translate(-18px, 4px);
+  }
+
+  73% {
+    transform: translate(8px, -2px);
+  }
+
+  87% {
+    transform: translate(-10px, 2px);
+  }
+
+  89% {
+    transform: translate(16px, -3px);
+  }
+
+  91% {
+    transform: translate(-6px, 1px);
+  }
+}
+
+@keyframes glitch-move-b {
+  0%,
+  66%,
+  75%,
+  86%,
+  93%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  67% {
+    transform: translate(12px, 3px);
+  }
+
+  69% {
+    transform: translate(-8px, -2px);
+  }
+
+  71% {
+    transform: translate(18px, -4px);
+  }
+
+  73% {
+    transform: translate(-10px, 2px);
+  }
+
+  87% {
+    transform: translate(9px, -2px);
+  }
+
+  89% {
+    transform: translate(-16px, 3px);
+  }
+
+  91% {
+    transform: translate(7px, -1px);
+  }
+}
+
+@keyframes glitch-paths {
+  0%,
+  66%,
+  75%,
+  86%,
+  93%,
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  67% {
+    clip-path: inset(0 0 82% 0);
+  }
+
+  68% {
+    clip-path: inset(18% 0 58% 0);
+  }
+
+  69% {
+    clip-path: inset(72% 0 8% 0);
+  }
+
+  70% {
+    clip-path: inset(38% 0 42% 0);
+  }
+
+  71% {
+    clip-path: inset(4% 0 76% 0);
+  }
+
+  72% {
+    clip-path: inset(61% 0 18% 0);
+  }
+
+  73% {
+    clip-path: inset(28% 0 52% 0);
+  }
+
+  87% {
+    clip-path: inset(10% 0 70% 0);
+  }
+
+  88% {
+    clip-path: inset(80% 0 4% 0);
+  }
+
+  89% {
+    clip-path: inset(44% 0 34% 0);
+  }
+
+  90% {
+    clip-path: inset(2% 0 84% 0);
+  }
+
+  91% {
+    clip-path: inset(66% 0 14% 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text,
+  .glitch-text > span,
+  .glitch-text::before,
+  .glitch-text::after {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: none;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none;
+  }
+}
