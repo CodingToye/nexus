@@ -7,15 +7,3 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Faction {
-  id           Int      @id @default(autoincrement())
-  name         String   @unique
-  slug         String   @unique
-  description  String
-  type         String
-  headquarters String?
-  influence    Int
-  imageUrl     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
