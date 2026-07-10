@@ -30,7 +30,11 @@ export default function OperationHistory() {
 
   return (
     <>
-      <HudPanel title="_Operation History" variant="green">
+      <HudPanel
+        title="_Operation History"
+        variant="green"
+        className="flex-grow"
+      >
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {experience.map((item) => (
             <button

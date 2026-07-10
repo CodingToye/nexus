@@ -10,7 +10,7 @@ export default function Skill({ title }: SkillProps) {
               border
               border-hud-border
               bg-hud-bg
-              px-3
+              px-2
               py-1
               text-xs
               uppercase

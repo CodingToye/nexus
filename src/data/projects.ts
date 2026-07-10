@@ -8,6 +8,7 @@ export const projects = [
     stack: ["React", "TypeScript", "Tailwind", "FastAPI", "Leaflet", "D3"],
     status: "Active",
     href: "https://earthquake-predictor-seven.vercel.app/",
+    vanityLink: "earthquake-predictor",
     avatar: "/images/earthquake_v2.png",
   },
   {
@@ -19,6 +20,7 @@ export const projects = [
     stack: ["React", "TypeScript", "Tailwind", "Node", "Express"],
     status: "Complete",
     href: "https://weather-dashboard-417915.web.app/",
+    vanityLink: "weather-dashboard",
     avatar: "/images/weather_dashboard_v3.png",
   },
   {
@@ -30,6 +32,7 @@ export const projects = [
     stack: ["React", "TypeScript", "Tailwind", "Local Storage"],
     status: "Active",
     href: "https://frontend-refresh-tool.vercel.app/",
+    vanityLink: "frontend-refresh-tool",
     avatar: "/images/interview_v0.png",
   },
   {
@@ -41,6 +44,7 @@ export const projects = [
     stack: ["React", "TypeScript", "Tailwind"],
     status: "Complete",
     href: "https://periodic-table-js-4s9x.vercel.app/",
+    vanityLink: "periodic-table-js",
     avatar: "/images/periodic_v0.png",
   },
 ];
