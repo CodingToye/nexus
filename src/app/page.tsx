@@ -15,7 +15,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-4">
             <AgentProfile />
-            <VitalsPanel />
+            <OperationHistory />
           </div>
 
           <MissionLog />
@@ -23,7 +23,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-4">
             <CurrentAssignment />
             <InstalledModules />
-            <OperationHistory />
+            <VitalsPanel />
           </div>
         </div>
       </div>
