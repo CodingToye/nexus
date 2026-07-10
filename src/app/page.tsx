@@ -4,7 +4,6 @@ import StatusBar from "@/components/ui/StatusBar";
 import AgentProfile from "@/components/profile/AgentProfile";
 import CurrentAssignment from "@/components/profile/CurrentAssignment";
 import InstalledModules from "@/components/skills/InstalledModules";
-import Vitals from "@/components/ui/Vitals";
 import VitalsPanel from "@/components/profile/VitalsPanel";
 
 export default function HomePage() {
