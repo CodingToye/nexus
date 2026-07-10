@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState, useRef } from "react";
 import HudPanel from "@/components/hud/HudPanel";
 import { experience, type ExperienceItem } from "@/data/experience";
 import GlitchText from "../effects/GlitchText";
@@ -9,18 +9,34 @@ import { CirclePower } from "lucide-react";
 export default function OperationHistory() {
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
 
+  const scrollYRef = useRef(0);
+
   useEffect(() => {
     if (!selectedItem) return;
 
-    const originalBodyOverflow = document.body.style.overflow;
-    const originalHtmlOverflow = document.documentElement.style.overflow;
+    scrollYRef.current = window.scrollY;
 
+    const originalBodyPosition = document.body.style.position;
+    const originalBodyTop = document.body.style.top;
+    const originalBodyWidth = document.body.style.width;
+    const originalBodyOverflow = document.body.style.overflow;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
 
     return () => {
+      document.body.style.position = originalBodyPosition;
+      document.body.style.top = originalBodyTop;
+      document.body.style.width = originalBodyWidth;
       document.body.style.overflow = originalBodyOverflow;
-      document.documentElement.style.overflow = originalHtmlOverflow;
+
+      window.scrollTo({
+        top: scrollYRef.current,
+        left: 0,
+        behavior: "instant",
+      });
     };
   }, [selectedItem]);
 
