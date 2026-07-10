@@ -14,8 +14,8 @@ export default function MissionLog({}) {
             className="
         border
         border-hud-cyan-dim/30
-        bg-hud-panel/50
-
+        hover:bg-black/50
+        transition
         flex
         flex-col
         gap-4
@@ -26,6 +26,8 @@ export default function MissionLog({}) {
         lg:gap-0
         lg:p-0
         lg:px-4
+        shadow-lg
+        shadow-black/40
       "
           >
             <div
@@ -35,7 +37,6 @@ export default function MissionLog({}) {
           pb-3
           text-xs
           text-hud-cyan/40
-
           lg:border-r
           lg:border-b-0
           lg:p-2

@@ -8,6 +8,21 @@ import { CirclePower } from "lucide-react";
 
 export default function OperationHistory() {
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const openModal = (item: ExperienceItem) => {
+    setIsClosing(false);
+    setSelectedItem(item);
+  };
+
+  const closeModal = () => {
+    setIsClosing(true);
+
+    window.setTimeout(() => {
+      setSelectedItem(null);
+      setIsClosing(false);
+    }, 180);
+  };
 
   useEffect(() => {
     if (!selectedItem) return;
@@ -36,7 +51,7 @@ export default function OperationHistory() {
             <button
               key={item.id}
               type="button"
-              onClick={() => setSelectedItem(item)}
+              onClick={() => openModal(item)}
               style={miniPanelStyle}
               className="
                 hud-panel
@@ -76,9 +91,7 @@ export default function OperationHistory() {
         <div
           role="dialog"
           aria-modal="true"
-          className="
-          modal-backdrop-in
-          modal-viewport
+          className={`
             fixed
             inset-0
             z-50
@@ -87,22 +100,27 @@ export default function OperationHistory() {
             justify-center
             bg-black/75
             backdrop-blur-sm
-          "
+            ${isClosing ? "modal-backdrop-out" : "modal-backdrop-in"}
+          `}
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
-              setSelectedItem(null);
+              closeModal();
             }
           }}
         >
-          <div className="modal-panel-in modal-panel-size relative ">
-            <div className="modal-scanline-overlay" aria-hidden="true" />
+          <div
+            className={`modal-panel-size relative ${isClosing ? "modal-panel-out" : "modal-panel-in"}`}
+          >
+            {!isClosing && (
+              <div className="modal-scanline-overlay" aria-hidden="true" />
+            )}
             <HudPanel
               variant="green"
               className="operation-modal h-full w-full overflow-hidden relative"
             >
               <button
                 type="button"
-                onClick={() => setSelectedItem(null)}
+                onClick={closeModal}
                 className="
     absolute
     -top-4

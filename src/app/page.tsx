@@ -4,6 +4,7 @@ import StatusBar from "@/components/ui/StatusBar";
 import AgentProfile from "@/components/profile/AgentProfile";
 import CurrentAssignment from "@/components/profile/CurrentAssignment";
 import InstalledModules from "@/components/skills/InstalledModules";
+import Vitals from "@/components/ui/Vitals";
 
 export default function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-4">
             <CurrentAssignment />
             <InstalledModules />
+            <Vitals />
           </div>
         </div>
       </div>

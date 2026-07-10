@@ -431,3 +431,41 @@
     clip-path: none;
   }
 }
+
+@keyframes modalBackdropOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalPanelOut {
+  from {
+    opacity: 1;
+    transform: translateZ(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateZ(0) scale(0.96);
+  }
+}
+
+.modal-backdrop-out {
+  animation: modalBackdropOut 180ms ease-in both;
+}
+
+.modal-panel-out {
+  animation: modalPanelOut 180ms ease-in both;
+}
+
+.modal-panel-in,
+.modal-panel-out {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
+}

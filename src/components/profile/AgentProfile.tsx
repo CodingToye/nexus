@@ -52,10 +52,16 @@ export default function AgentProfile() {
           </div>
         </div>
       </div>
-      <div className="border border-hud-cyan/40 p-4 mb-4 bg-hud-green/10">
-        <p className="max-w-3xl oxanium uppercase text-sm text-hud-muted">
-          <Terminal className="h-5 w-5 text-hud-green inline animate-pulse" />{" "}
-          {profile.summary}
+      <div className="max-w-3xl oxanium uppercase text-sm text-hud-muted border border-hud-cyan/40 p-4 mb-4 bg-hud-green/10">
+        <p className="mb-4">
+          <Terminal className="h-5 w-5 text-hud-green inline animate-pulse" />
+          Senior Frontend Engineer with 20+ years of experience, including 10+
+          years building JavaScript and React applications.
+        </p>
+        <p>
+          I design and build fast, maintainable interfaces with clean UI, strong
+          TypeScript, and pragmatic technical decisions that keep products
+          scalable and easy to evolve.
         </p>
       </div>
       <footer className="mt-10 flex flex-wrap gap-4 justify-between  text-sm text-zinc-400 oxanium">
