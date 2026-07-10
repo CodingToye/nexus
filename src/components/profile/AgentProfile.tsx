@@ -3,6 +3,7 @@ import AvatarVideo from "./AvatarVideo";
 import { contactLinks } from "@/data/contact";
 import { Terminal, MapPin, Locate, Scan } from "lucide-react";
 import { profile } from "@/data/profile";
+import AnimatedIntroCopy from "@/components/profile/AnimatedIntroCopy";
 
 export default function AgentProfile() {
   return (
@@ -52,27 +53,7 @@ export default function AgentProfile() {
           </div>
         </div>
       </div>
-      <div className="max-w-3xl oxanium uppercase text-sm text-hud-muted border border-hud-cyan/40 p-4 mb-4 bg-hud-green/10 animate-hud-focus-in">
-        <p className="mb-4">
-          <Terminal className="h-5 w-5 text-hud-green inline animate-pulse" />
-          Senior Frontend Engineer with{" "}
-          <em className="hud-flicker-pulse text-hud-green not-italic [--hud-effect-delay:950ms]">
-            20+ years of experience
-          </em>
-          , including 10+ years building JavaScript and React applications.
-        </p>
-        <p>
-          I design and build{" "}
-          <em className="hud-flicker-pulse text-hud-green not-italic [--hud-effect-delay:1300ms]">
-            fast, maintainable interfaces
-          </em>
-          with clean UI, strong TypeScript, and{" "}
-          <em className="hud-flicker-pulse text-hud-green not-italic [--hud-effect-delay:1650ms]">
-            pragmatic technical decisions
-          </em>
-          that keep products scalable and easy to evolve.
-        </p>
-      </div>
+      <AnimatedIntroCopy />
       <footer className="mt-10 flex flex-wrap gap-4 justify-between  text-sm text-zinc-400 oxanium">
         {contactLinks.map((link) => (
           <div key={link.label}>
