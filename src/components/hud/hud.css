@@ -469,3 +469,58 @@
   backface-visibility: hidden;
   contain: layout style paint;
 }
+
+.hud-border-runner {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  top: 0;
+  width: 42px;
+  height: 2px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    var(--border),
+    transparent
+  );
+
+  box-shadow:
+    0 0 8px var(--border),
+    0 0 18px var(--border);
+
+  opacity: 0.45;
+
+  offset-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--cut),
+    var(--cut) 0
+  );
+
+  offset-distance: 0%;
+  offset-rotate: auto;
+
+  animation: hud-border-runner 8s linear infinite;
+}
+
+@keyframes hud-border-runner {
+  from {
+    offset-distance: 0%;
+  }
+
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-border-runner {
+    animation: none;
+    display: none;
+  }
+}

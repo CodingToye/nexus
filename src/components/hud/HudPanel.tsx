@@ -9,6 +9,7 @@ type BaseHudPanelProps = {
   children?: ReactNode;
   className?: string;
   variant?: HudPanelVariant;
+  shimmer?: boolean;
 };
 
 type HudPanelProps =
@@ -34,6 +35,7 @@ export default function HudPanel({
   variant = "cyan",
   asLink = false,
   href,
+  shimmer,
 }: HudPanelProps) {
   const style = {
     "--border": variants[variant],
@@ -46,6 +48,7 @@ export default function HudPanel({
   transition-colors
   duration-200
   ${asLink ? "hud-panel-link hover:bg-hud-cyan/10!" : ""}
+  
   ${className}
   backdrop-blur-xs
   shadow
@@ -53,6 +56,7 @@ export default function HudPanel({
 
   const content = (
     <>
+      {shimmer && <span className="hud-border-runner" aria-hidden="true" />}
       <div className="modal-scanline" />
       {title && (
         <h2 className="hud-title mb-4 border-b border-white/10 pb-2 text-sm text-hud-pink uppercase">

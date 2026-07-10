@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 
 export default function CurrentAssignment({}) {
   return (
-    <HudPanel title="_Current Assignment" variant="pink">
+    <HudPanel title="_Current Assignment" variant="pink" shimmer>
       <p className="mt-2 text-3xl font-bold text-hud-cyan oxanium">
         {profile.currentTask}
       </p>

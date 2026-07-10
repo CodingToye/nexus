@@ -1,13 +1,18 @@
 import HudPanel from "../hud/HudPanel";
 import AvatarVideo from "./AvatarVideo";
 import { contactLinks } from "@/data/contact";
-import { Terminal, MapPin, Locate, Scan } from "lucide-react";
+import { MapPin, Locate, Scan } from "lucide-react";
 import { profile } from "@/data/profile";
 import AnimatedIntroCopy from "@/components/profile/AnimatedIntroCopy";
 
 export default function AgentProfile() {
   return (
-    <HudPanel title="_Agent Profile" className="max-w-fit " variant="pink">
+    <HudPanel
+      title="_Agent Profile"
+      className="max-w-fit "
+      variant="pink"
+      shimmer
+    >
       <div className="flex flex-col md:flex-row gap-4 mb-4">
         <div className="relative h-64 w-full md:w-64 overflow-hidden rounded-sm border border-cyan-400/50 shadow-lg shadow-cyan-500/20">
           <AvatarVideo
