@@ -326,10 +326,6 @@
   animation: heartRatePulse 1.1s ease-in-out infinite;
 }
 
-.heart-animation {
-  animation: heartRatePulse 1.3s ease-in-out infinite;
-}
-
 .heart-rate-svg {
   display: block;
   width: 100%;
@@ -339,7 +335,7 @@
 }
 
 .heart-rate-line {
-  animation: heartRateMove 2.6s linear infinite;
+  animation: heartRateMove 3.6s linear infinite;
   transform-box: fill-box;
 }
 

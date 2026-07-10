@@ -7,7 +7,7 @@ export default function InstalledModules({}) {
     <HudPanel title="_Installed Modules" variant="pink">
       {skills.map((skillGroup) => (
         <article key={skillGroup.category} className="mb-8">
-          <h3 className="text-hud_text uppercase mb-2">
+          <h3 className="text-hud_text uppercase mb-2 text-sm">
             _{skillGroup.category}
           </h3>
           <div className="flex flex-wrap gap-2">

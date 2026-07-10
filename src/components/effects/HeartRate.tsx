@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import { Heart } from "lucide-react";
 
 type HeartRateVariant = "green" | "cyan" | "pink";
 
@@ -36,7 +35,6 @@ export default function HeartRate({
         <span className="heart-rate-dot" />
         <span>{label}</span>
         <span className="heart-rate-bpm">{bpm} BPM</span>
-        <Heart className="heart-animation" />
       </div>
 
       <svg
