@@ -52,3 +52,125 @@ h3,
   font-family: var(--font-body), sans-serif;
   font-weight: 500;
 }
+
+@keyframes hud-fast-flicker-in {
+  0% {
+    opacity: 0.25;
+    filter: blur(2px) brightness(2);
+    transform: translateX(-1px);
+  }
+
+  12% {
+    opacity: 1;
+    filter: blur(0) brightness(1.8);
+    transform: translateX(1px);
+  }
+
+  20% {
+    opacity: 0.35;
+    filter: blur(1px) brightness(2.4);
+    transform: translateX(-2px);
+  }
+
+  34% {
+    opacity: 1;
+    filter: blur(0) brightness(1.4);
+    transform: translateX(0);
+  }
+
+  48% {
+    opacity: 0.55;
+    filter: brightness(2);
+  }
+
+  60% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes hud-subtle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+
+  50% {
+    opacity: 0.52;
+    filter: drop-shadow(0 0 7px currentColor);
+  }
+}
+
+.hud-flicker-pulse {
+  display: inline-block;
+  animation:
+    hud-fast-flicker-in 520ms steps(2, end) var(--hud-effect-delay, 0ms) 1 both,
+    hud-subtle-pulse 4.8s ease-in-out calc(var(--hud-effect-delay, 0ms) + 700ms)
+      infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-flicker-pulse {
+    animation: none;
+  }
+}
+
+.animate-delay-after-focus-0 {
+  animation-delay: 950ms;
+}
+
+.animate-delay-after-focus-1 {
+  animation-delay: 1350ms;
+}
+
+.animate-delay-after-focus-2 {
+  animation-delay: 1800ms;
+}
+
+@theme {
+  --animate-hud-focus-in: hud-focus-in 850ms steps(2, end) 1 both;
+
+  @keyframes hud-focus-in {
+    0% {
+      opacity: 0.25;
+      filter: blur(10px) brightness(2);
+      transform: translateY(6px) skewX(-2deg);
+    }
+
+    18% {
+      opacity: 0.7;
+      filter: blur(6px) brightness(1.8);
+      transform: translateY(2px) skewX(1deg);
+    }
+
+    32% {
+      opacity: 0.35;
+      filter: blur(4px) brightness(2.4);
+      transform: translateX(-4px);
+    }
+
+    48% {
+      opacity: 1;
+      filter: blur(2px) brightness(1.6);
+      transform: translateX(3px);
+    }
+
+    68% {
+      opacity: 0.75;
+      filter: blur(1px) brightness(1.3);
+    }
+
+    100% {
+      opacity: 1;
+      filter: blur(0) brightness(1);
+      transform: none;
+    }
+  }
+}
