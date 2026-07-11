@@ -1,44 +1,15 @@
 "use client";
 
-import { CSSProperties, useEffect, useState, useRef } from "react";
-import HudPanel from "@/components/hud/HudPanel";
-import { experience, type ExperienceItem } from "@/data/experience";
-import GlitchText from "../effects/GlitchText";
+import { type CSSProperties, useState } from "react";
 import { CirclePower } from "lucide-react";
+
+import HudPanel from "@/components/hud/HudPanel";
+import Modal from "@/components/ui/Modal";
+import GlitchText from "@/components/effects/GlitchText";
+import { experience, type ExperienceItem } from "@/data/experience";
 
 export default function OperationHistory() {
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
-
-  const scrollYRef = useRef(0);
-
-  useEffect(() => {
-    if (!selectedItem) return;
-
-    scrollYRef.current = window.scrollY;
-
-    const originalBodyPosition = document.body.style.position;
-    const originalBodyTop = document.body.style.top;
-    const originalBodyWidth = document.body.style.width;
-    const originalBodyOverflow = document.body.style.overflow;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollYRef.current}px`;
-    document.body.style.width = "100%";
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.position = originalBodyPosition;
-      document.body.style.top = originalBodyTop;
-      document.body.style.width = originalBodyWidth;
-      document.body.style.overflow = originalBodyOverflow;
-
-      window.scrollTo({
-        top: scrollYRef.current,
-        left: 0,
-        behavior: "instant",
-      });
-    };
-  }, [selectedItem]);
 
   const miniPanelStyle = {
     "--border": "var(--color-hud-green)",
@@ -91,52 +62,33 @@ export default function OperationHistory() {
           ))}
         </div>
       </HudPanel>
-
-      {selectedItem && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="
-          modal-backdrop-in
-          modal-viewport
-            fixed
-            inset-0
-            z-50
-            flex
-            items-center
-            justify-center
-            bg-black/75
-            backdrop-blur-sm
-          "
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              setSelectedItem(null);
-            }
-          }}
-        >
-          <div className="modal-panel-in modal-panel-size relative ">
+      <Modal
+        isOpen={selectedItem !== null}
+        onClose={() => setSelectedItem(null)}
+      >
+        {selectedItem && (
+          <div className="modal-panel-in relative h-full min-h-0 w-full">
             <div className="modal-scanline-overlay" aria-hidden="true" />
+
             <HudPanel
               variant="green"
-              className="operation-modal h-full w-full overflow-hidden relative"
+              className="operation-modal relative h-full min-h-0 w-full overflow-hidden"
             >
               <button
                 type="button"
+                aria-label="Close operation file"
                 onClick={() => setSelectedItem(null)}
                 className="
-    absolute
-    -top-4
-    -right-4
-    cursor-pointer
-    px-3
-    py-1
-    text-sm
-    uppercase
-    text-hud-muted
-    transition
-    hover:text-hud-green
-    oxanium
-  "
+            absolute
+            right-2
+            top-2
+            z-20
+            cursor-pointer
+            p-2
+            text-hud-muted
+            transition
+            hover:text-hud-green
+          "
               >
                 <CirclePower />
               </button>
@@ -147,7 +99,7 @@ export default function OperationHistory() {
                     Operation File
                   </p>
 
-                  <h2 className="mt-2">
+                  <h2 id="operation-modal-title" className="mt-2">
                     <GlitchText
                       text={selectedItem.company}
                       className="text-4xl uppercase text-hud-cyan"
@@ -180,15 +132,15 @@ export default function OperationHistory() {
                         <span
                           key={tech}
                           className="
-              border
-              border-hud-green/40
-              px-3
-              py-1
-              text-xs
-              uppercase
-              tracking-wider
-              text-hud-green
-            "
+                      border
+                      border-hud-green/40
+                      px-3
+                      py-1
+                      text-xs
+                      uppercase
+                      tracking-wider
+                      text-hud-green
+                    "
                         >
                           {tech}
                         </span>
@@ -196,21 +148,23 @@ export default function OperationHistory() {
                     </div>
                   </div>
 
-                  <div className="modal-reveal-section mt-6 flex min-h-0 flex-1 flex-col pb-6">
+                  <div className="modal-reveal-section mt-6 flex min-h-0 flex-1 flex-col pb-2">
                     <p className="shrink-0 text-xs uppercase tracking-[0.25em] text-hud-muted">
                       Field Notes
                     </p>
 
                     <div
                       className="
-          mt-4
-          min-h-0
-          flex-1
-          overflow-y-auto
-          pr-3
-          [scrollbar-color:var(--color-hud-green)_transparent]
-          [scrollbar-width:thin]
-        "
+                  mt-4
+                  min-h-0
+                  flex-1
+                  touch-pan-y
+                  overflow-y-auto
+                  overscroll-contain
+                  pr-3
+                  [scrollbar-color:var(--color-hud-green)_transparent]
+                  [scrollbar-width:thin]
+                "
                     >
                       <ul className="space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
                         {selectedItem.summary.map((point) => (
@@ -226,8 +180,8 @@ export default function OperationHistory() {
               </div>
             </HudPanel>
           </div>
-        </div>
-      )}
+        )}
+      </Modal>
     </>
   );
 }

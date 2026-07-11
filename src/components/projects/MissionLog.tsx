@@ -104,16 +104,18 @@ export default function MissionLog({}) {
               </div>
             </div>
             <div className="lg:grid-cols-1 col-span-2 p-4 lg:border-t lg:border-hud-cyan-dim/30">
-              <CardSim className="inline mr-1 text-hud-pink" />
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                title={project.href}
-                className="oxanium break-all text-xs text-hud-pink uppercase transition duration-300 hover:text-hud-pink-dark"
-              >
-                {project.vanityLink}
-              </a>
+              <div className="grid grid-cols-[32px_1fr] items-center">
+                <CardSim className="inline mr-1 text-hud-pink" />
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={project.href}
+                  className="oxanium break-all text-xs text-hud-pink uppercase transition duration-300 hover:text-hud-pink-dark"
+                >
+                  {project.vanityLink}
+                </a>
+              </div>
             </div>
           </article>
         ))}

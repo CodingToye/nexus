@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Oxanium, Inter } from "next/font/google";
+import { Oxanium, Rajdhani, Inter } from "next/font/google";
 import "./globals.css";
+
+const rajdhani = Rajdhani({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 const oxanium = Oxanium({
   variable: "--font-heading",
@@ -31,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${oxanium.variable} ${inter.variable} h-full antialiased`}
+      className={`${oxanium.variable} ${inter.variable} ${rajdhani.variable} h-full antialiased`}
     >
       <head>
         <link
@@ -51,7 +58,7 @@ export default function RootLayout({
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
-        <main>{children}</main>
+        <>{children}</>
       </body>
     </html>
   );

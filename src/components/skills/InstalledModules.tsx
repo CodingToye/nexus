@@ -11,8 +11,8 @@ export default function InstalledModules({}) {
             _{skillGroup.category}
           </h3>
           <div className="flex flex-wrap gap-2">
-            {skillGroup.items.map((skill) => (
-              <Skill key="skill" title={skill} />
+            {skillGroup.items.map((skill, index) => (
+              <Skill key={index} title={skill} />
             ))}
           </div>
         </article>
