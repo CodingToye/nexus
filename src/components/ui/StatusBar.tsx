@@ -1,6 +1,7 @@
 import type { SystemStatus } from "../layout/PortfolioShell";
 import { profile } from "@/data/profile";
 import { Biohazard } from "lucide-react";
+import ComputerFan from "../effects/ComputerFan";
 
 type StatusBarProps = {
   status: SystemStatus;
@@ -11,25 +12,25 @@ const statusConfig = {
     network: "OFFLINE",
     security: "LOCKED",
     interface: "DISABLED",
-    colour: "text-red-400",
+    colour: "text-error-bright",
   },
   authenticating: {
     network: "CONNECTING",
     security: "AUTHENTICATING",
     interface: "STANDBY",
-    colour: "text-amber-300",
+    colour: "text-warning",
   },
   booting: {
     network: "CONNECTED",
     security: "VERIFIED",
     interface: "BOOTING",
-    colour: "text-cyan-300",
+    colour: "text-online-dim",
   },
   online: {
     network: "ONLINE",
     security: "SECURE",
     interface: "ACTIVE",
-    colour: "text-green-400",
+    colour: "text-online",
   },
 } satisfies Record<
   SystemStatus,
@@ -44,9 +45,9 @@ const statusConfig = {
 export default function StatusBar({ status }: StatusBarProps) {
   const currentStatus = statusConfig[status];
   return (
-    <div className="status-bar flex flex-col gap-4 md:flex-row justify-between mb-4 bg-black/50 border border-hud-cyan/20 p-2">
-      <div className="flex flex-grow lg:gap-2 uppercase oxanium text-hud-cyan opacity-70 justify-around md:justify-normal">
-        <p className="text-hud-pink flex">
+    <div className="status-bar flex flex-col gap-4 md:flex-row justify-between mb-4 bg-black/50 border border-secondary/20 p-2">
+      <div className="flex flex-grow lg:gap-2 uppercase oxanium text-secondary-dim opacity-70 items-center justify-around md:justify-normal">
+        <p className="text-primary flex">
           <Biohazard className="inline mr-1" />
           Nexus
         </p>
@@ -55,13 +56,14 @@ export default function StatusBar({ status }: StatusBarProps) {
           Engineering Console <span className="lowercase">v</span>2.7
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-2 lg:flex lg:items-center lg:gap-12 uppercase text-xs md:text-sm oxanium text-cyan-300">
+      <div className="grid grid-cols-2 gap-2 lg:flex lg:items-center lg:gap-12 uppercase text-xs md:text-sm oxanium text-secondary-dim">
         <p>
           _Sys Status:{" "}
-          <span className="text-hud-green">{currentStatus.network}</span>
+          <span className={currentStatus.colour}>{currentStatus.network}</span>
         </p>
         <p>
-          _Net: <span className="text-hud-green">{currentStatus.security}</span>
+          _Net:{" "}
+          <span className={currentStatus.colour}>{currentStatus.security}</span>
         </p>
         <p>
           _Interface:{" "}
@@ -70,8 +72,18 @@ export default function StatusBar({ status }: StatusBarProps) {
           </span>
         </p>
         <p>
-          _User: <span className="text-hud-green"> {profile.handle}</span>
+          _User:{" "}
+          <span
+            className={`${status !== "online" ? "blur-sm" : "text-secondary-bright/50"}`}
+          >
+            {" "}
+            {profile.handle}
+          </span>
         </p>
+        <div className="flex">
+          <ComputerFan variant="secondary" speed="slow" />
+          <ComputerFan variant="primary" speed="fast" />
+        </div>
       </div>
     </div>
   );

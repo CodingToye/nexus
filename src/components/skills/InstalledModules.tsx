@@ -1,13 +1,19 @@
 import HudPanel from "../hud/HudPanel";
 import { skills } from "@/data/skills";
 import Skill from "../ui/Skill";
+import { colourVariants, type ColourVariant } from "@/lib/colourVariants";
 
-export default function InstalledModules({}) {
+type InstalledModulesProps = {
+  variant: ColourVariant;
+};
+
+export default function InstalledModules({ variant }: InstalledModulesProps) {
+  const colours = colourVariants[variant];
   return (
-    <HudPanel title="_Installed Modules" variant="pink">
+    <HudPanel title="_Installed Modules" variant="primary">
       {skills.map((skillGroup) => (
-        <article key={skillGroup.category} className="mb-8">
-          <h3 className="text-hud_text uppercase mb-2 text-sm">
+        <article key={skillGroup.category} className={`mb-8 ${colours.text}`}>
+          <h3 className={`${colours.text} uppercase mb-2 text-sm`}>
             _{skillGroup.category}
           </h3>
           <div className="flex flex-wrap gap-2">

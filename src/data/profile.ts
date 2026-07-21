@@ -2,7 +2,7 @@ export const profile = {
   name: "Nick Toye",
   avatar: "/images/avatar.png",
   handle: "coding.toye",
-  title: "Senior Frontend Engineer",
+  title: "Frontend Engineer",
   subtitle: "React / TypeScript / TailwindCSS",
   location: "North Wales, UK",
   currentTask: "Seeking Contract",

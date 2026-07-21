@@ -1,4 +1,4 @@
-export type VitalVariant = "green" | "cyan" | "pink";
+export type VitalVariant = "tertiary" | "secondary" | "pink";
 
 export type Vital = {
   label: string;
@@ -12,37 +12,37 @@ export const vitals = [
     label: "Pulse",
     value: "72 BPM",
     detail: "Stable delivery rhythm",
-    variant: "green",
+    variant: "tertiary",
   },
   {
     label: "Signal",
     value: "Online",
     detail: "Available for remote roles",
-    variant: "cyan",
+    variant: "secondary",
   },
   {
     label: "Uptime",
     value: "20+ YRS",
     detail: "JavaScript experience",
-    variant: "green",
+    variant: "tertiary",
   },
   {
     label: "Core Stack",
     value: "React / TS",
     detail: "Primary frontend loadout",
-    variant: "cyan",
+    variant: "secondary",
   },
   {
     label: "Build State",
     value: "Passing",
     detail: "Ready to deploy",
-    variant: "green",
+    variant: "tertiary",
   },
   {
     label: "Latency",
     value: "Low",
     detail: "UK / EU timezone",
-    variant: "cyan",
+    variant: "secondary",
   },
   {
     label: "Availability",

@@ -1,3 +1,14 @@
+export type ProjectsItem = {
+  id: string;
+  codename: string;
+  title: string;
+  stack: string[];
+  status: string;
+  href: string;
+  vanityLink: string;
+  avatar: string;
+};
+
 export const projects = [
   {
     id: "earthquake-monitor",

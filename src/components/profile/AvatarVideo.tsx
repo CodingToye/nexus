@@ -14,7 +14,7 @@ export default function AvatarVideo({
   return (
     <div
       className={`
-        relative aspect-square overflow-hidden border border-hud-cyan/50
+        relative aspect-square overflow-hidden 
         bg-black shadow-[0_0_30px_rgba(49,220,220,0.25)]
         ${className}
       `}
@@ -40,7 +40,7 @@ export default function AvatarVideo({
         className="hidden h-full w-full object-cover motion-reduce:block"
       />
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-pink-500/10" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-secondary-500/10 via-transparent to-pink-500/10" />
 
       <div className="pointer-events-none absolute inset-0 border border-white/5" />
 

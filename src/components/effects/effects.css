@@ -23,7 +23,7 @@
 }
 
 .glitch-text::before {
-  color: var(--color-hud-pink);
+  color: var(--color-primary);
   z-index: 1;
   animation:
     glitch-paths 2.8s step-end infinite,
@@ -32,7 +32,7 @@
 }
 
 .glitch-text::after {
-  color: var(--color-hud-cyan);
+  color: var(--color-secondary);
   z-index: 1;
   animation:
     glitch-paths 2.8s step-end infinite reverse,
@@ -379,6 +379,121 @@
 @media (prefers-reduced-motion: reduce) {
   .heart-rate-line,
   .heart-rate-dot {
+    animation: none;
+  }
+}
+
+.fake-panel-scroll {
+  height: 4rem;
+  overflow: hidden;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+.fake-panel-scroll__track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  animation-name: fake-panel-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.fake-panel-scroll__content {
+  flex-shrink: 0;
+  padding-bottom: 1rem;
+}
+
+.fake-panel-scroll__content p {
+  white-space: nowrap;
+}
+
+@keyframes fake-panel-scroll {
+  from {
+    transform: translateY(0);
+    /* opacity: 1; */
+  }
+
+  to {
+    transform: translateY(-50%);
+    /* opacity: 0.5; */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fake-panel-scroll__track {
+    animation: none;
+  }
+}
+
+.computer-fan {
+  width: 40px;
+  height: 40px;
+  color: var(--fan-color);
+}
+
+.computer-fan svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.computer-fan-frame {
+  fill: rgba(5, 11, 18, 0.75);
+  stroke: var(--fan-color);
+  stroke-width: 1.5;
+  opacity: 0.75;
+}
+
+.computer-fan-ring {
+  fill: none;
+  stroke: var(--fan-color);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+.computer-fan-blades {
+  transform-origin: 32px 32px;
+  animation: computer-fan-spin var(--fan-speed) linear infinite;
+}
+
+.computer-fan-blades path {
+  fill: var(--fan-color);
+  opacity: 0.55;
+  filter: drop-shadow(0 0 4px var(--fan-color));
+}
+
+.computer-fan-hub {
+  fill: var(--fan-color);
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px var(--fan-color));
+}
+
+.computer-fan-screw {
+  fill: var(--fan-color);
+  opacity: 0.5;
+}
+
+@keyframes computer-fan-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .computer-fan-blades {
     animation: none;
   }
 }

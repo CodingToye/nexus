@@ -6,22 +6,27 @@ import { CirclePower } from "lucide-react";
 import HudPanel from "@/components/hud/HudPanel";
 import Modal from "@/components/ui/Modal";
 import GlitchText from "@/components/effects/GlitchText";
+import FakePanel from "../effects/FakePanel";
+import Skill from "../ui/Skill";
+import { fakePanelsContent } from "../effects/FakePanel";
 import { experience, type ExperienceItem } from "@/data/experience";
+import { colourVariants, type ColourVariant } from "@/lib/colourVariants";
 
-export default function OperationHistory() {
+type OperationHistoryProps = {
+  variant: ColourVariant;
+};
+
+export default function OperationHistory({ variant }: OperationHistoryProps) {
+  const colours = colourVariants[variant];
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
 
   const miniPanelStyle = {
-    "--border": "var(--color-hud-green)",
+    "--border": colours.cssVar,
   } as CSSProperties;
 
   return (
     <>
-      <HudPanel
-        title="_Operation History"
-        variant="green"
-        className="flex-grow"
-      >
+      <HudPanel title="_Operation History" variant={variant} className="h-full">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {experience.map((item) => (
             <button
@@ -29,37 +34,45 @@ export default function OperationHistory() {
               type="button"
               onClick={() => setSelectedItem(item)}
               style={miniPanelStyle}
-              className="
+              className={`
                 hud-panel
                 block
-                min-h-32
+                h-32
                 cursor-pointer
-                bg-hud-panel/75
+                bg-black/75
                 text-left
                 backdrop-blur-xs
                 transition-all
                 duration-200
-                hover:bg-hud-green/10
-                focus:outline-none
-                focus:ring-2
-                focus:ring-hud-green
-                focus:ring-offset-2
-                focus:ring-offset-black
-              "
+              `}
             >
-              <span className="block border-b border-white/10 pb-2 text-sm uppercase text-hud-green oxanium">
+              <span
+                className={`block border-b border-white/10 pb-2 text-sm uppercase oxanium ${colours.text}`}
+              >
                 _{item.company}
               </span>
 
-              <span className="mt-4 block text-sm text-hud-text oxanium">
+              <span className={`mt-4 block text-sm oxanium ${colours.textDim}`}>
                 {item.period}
               </span>
 
-              <span className="mt-2 block text-xs uppercase tracking-widest text-hud-muted oxanium">
+              <span
+                className={`mt-2 block text-xs uppercase tracking-widest oxanium ${colours.textBright}`}
+              >
                 {item.location}
               </span>
             </button>
           ))}
+          <div className="grid grid-cols-2 gap-4">
+            {fakePanelsContent.map((panel, index) => (
+              <FakePanel
+                key={index}
+                title={panel.title}
+                entries={panel.entries}
+                duration={panel.duration}
+              />
+            ))}
+          </div>
         </div>
       </HudPanel>
       <Modal
@@ -71,85 +84,81 @@ export default function OperationHistory() {
             <div className="modal-scanline-overlay" aria-hidden="true" />
 
             <HudPanel
-              variant="green"
+              variant={variant}
               className="operation-modal relative h-full min-h-0 w-full overflow-hidden"
             >
               <button
                 type="button"
                 aria-label="Close operation file"
                 onClick={() => setSelectedItem(null)}
-                className="
+                className={`
             absolute
             right-2
             top-2
             z-20
             cursor-pointer
             p-2
-            text-hud-muted
+            ${colours.text}
             transition
-            hover:text-hud-green
-          "
+            hover:${colours.textBright}
+          `}
               >
                 <CirclePower />
               </button>
 
               <div className="flex h-full min-h-0 flex-col">
                 <div className="shrink-0">
-                  <p className="text-xs uppercase tracking-[0.3em] text-hud-green">
+                  <p
+                    className={`text-xs uppercase tracking-[0.3em] ${colours.text}`}
+                  >
                     Operation File
                   </p>
 
                   <h2 id="operation-modal-title" className="mt-2">
                     <GlitchText
                       text={selectedItem.company}
-                      className="text-4xl uppercase text-hud-cyan"
+                      className={`text-4xl uppercase ${colours.text}`}
                     />
                   </h2>
 
-                  <p className="mt-2 text-sm text-hud-muted oxanium">
+                  <p className={`mt-2 text-sm oxanium ${colours.textBright}`}>
                     {selectedItem.location} / / {selectedItem.period}
                   </p>
                 </div>
 
-                <div className="modal-body-reveal flex min-h-0 flex-1 flex-col">
+                <div
+                  className={`modal-body-reveal flex min-h-0 flex-1 flex-col ${colours.text}`}
+                >
                   <div className="modal-reveal-section mt-6 shrink-0 border-t border-white/10 pt-6">
-                    <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
+                    <p
+                      className={`text-xs uppercase tracking-[0.25em] ${colours.textBright}`}
+                    >
                       Assigned Role
                     </p>
 
-                    <p className="mt-2 text-xl uppercase text-hud-green oxanium">
+                    <p className="mt-2 text-xl uppercase text-tertiary oxanium">
                       {selectedItem.role}
                     </p>
                   </div>
 
                   <div className="modal-reveal-section mt-6 shrink-0">
-                    <p className="text-xs uppercase tracking-[0.25em] text-hud-muted">
+                    <p
+                      className={`text-xs uppercase tracking-[0.25em] ${colours.textBright}`}
+                    >
                       Loadout
                     </p>
 
                     <div className="mt-3 flex flex-wrap gap-2">
-                      {selectedItem.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="
-                      border
-                      border-hud-green/40
-                      px-3
-                      py-1
-                      text-xs
-                      uppercase
-                      tracking-wider
-                      text-hud-green
-                    "
-                        >
-                          {tech}
-                        </span>
+                      {selectedItem.stack.map((item) => (
+                        <Skill key={item} title={item} />
                       ))}
                     </div>
                   </div>
 
                   <div className="modal-reveal-section mt-6 flex min-h-0 flex-1 flex-col pb-2">
-                    <p className="shrink-0 text-xs uppercase tracking-[0.25em] text-hud-muted">
+                    <p
+                      className={`text-xs uppercase tracking-[0.25em] ${colours.textBright}`}
+                    >
                       Field Notes
                     </p>
 
@@ -162,14 +171,16 @@ export default function OperationHistory() {
                   overflow-y-auto
                   overscroll-contain
                   pr-3
-                  [scrollbar-color:var(--color-hud-green)_transparent]
+                  [scrollbar-color:var(--color-tertiary)_transparent]
                   [scrollbar-width:thin]
                 "
                     >
-                      <ul className="space-y-3 text-sm leading-6 text-hud-text/85 oxanium">
+                      <ul
+                        className={`space-y-3 text-sm leading-6 oxanium ${colours.text}`}
+                      >
                         {selectedItem.summary.map((point) => (
                           <li key={point} className="flex gap-3">
-                            <span className="text-hud-green">&gt;</span>
+                            <span>&gt;</span>
                             <span>{point}</span>
                           </li>
                         ))}

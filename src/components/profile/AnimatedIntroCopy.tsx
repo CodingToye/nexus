@@ -2,8 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Terminal } from "lucide-react";
+import type { HudPanelVariant } from "../hud/HudPanel";
 
-export default function AnimatedIntroCopy() {
+type AnimatedIntroCopyProps = {
+  variant: HudPanelVariant;
+};
+
+export default function AnimatedIntroCopy({ variant }: AnimatedIntroCopyProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -36,11 +41,11 @@ export default function AnimatedIntroCopy() {
         oxanium
         mb-4
         border
-        border-hud-cyan/40
-        bg-hud-green/10
+        border-${variant}
+        bg-black/50
         p-4
         text-sm
-        text-hud-muted
+        text-white
         uppercase
         transition-[filter,opacity,transform]
         duration-500
@@ -59,14 +64,14 @@ export default function AnimatedIntroCopy() {
             inline
             h-5
             w-5
-            text-hud-green
+            text-${variant}
             ${isVisible ? "hud-flicker-pulse [--hud-effect-delay:950ms]" : ""}
           `}
         />
         Senior Frontend Engineer with{" "}
         <em
           className={`
-            text-hud-green
+            text-${variant}-bright
             not-italic
             ${isVisible ? "hud-flicker-pulse [--hud-effect-delay:950ms]" : ""}
           `}
@@ -80,7 +85,7 @@ export default function AnimatedIntroCopy() {
         I design and build{" "}
         <em
           className={`
-            text-hud-green
+            text-${variant}-bright
             not-italic
             ${isVisible ? "hud-flicker-pulse [--hud-effect-delay:1300ms]" : ""}
           `}
@@ -90,7 +95,7 @@ export default function AnimatedIntroCopy() {
         with clean UI, strong TypeScript, and{" "}
         <em
           className={`
-            text-hud-green
+            text-${variant}-bright
             not-italic
             ${isVisible ? "hud-flicker-pulse [--hud-effect-delay:1650ms]" : ""}
           `}

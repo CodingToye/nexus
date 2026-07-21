@@ -15,9 +15,9 @@ export default function Skill({ title }: SkillProps) {
               text-xs
               uppercase
               tracking-wider
-              text-hud-cyan
+              text-hud-secondary
               transition-colors
-              hover:border-hud-cyan
+              hover:border-hud-secondary
               hover:text-white
               label
             "

@@ -6,23 +6,43 @@
 }
 
 @theme {
-  --color-hud-bg: #050b12;
-  --color-hud-panel: #0b141d;
+  /* --color-hud-bg: #050b12;
+  --color-hud-panel: #0b141d; */
 
-  --color-hud-cyan: #31dcdc;
-  --color-hud-cyan-dim: #1a8f99;
+  /* --color-hud-secondary: #31dcdc; */
+  /* --color-hud-secondary-dim: #1a8f99; */
 
-  --color-hud-green: #8af7bc;
-  --color-hud-pink: #ff2d95;
-  --color-hud-pink-dark: #b91666;
+  /* --color-tertiary: #8af7bc; */
+  /* --color-hud-pink: #952f2b; */
+  /* --color-hud-pink-dark: #952f2b; */
 
-  --color-hud-text: #d8f8ff;
+  /* --color-hud-text: #d8f8ff;
   --color-hud-muted: #6d8b98;
 
   --color-hud-border: #164756;
   --color-hud-border-bright: #31dcdc;
 
-  --color-hud-cp-red: #f75049;
+  --color-hud-cp-red: #f75049;*/
+
+  --color-primary-dim: #b91666;
+  --color-primary: #ff2d95;
+  --color-primary-bright: #ff8ac8;
+
+  --color-secondary-dim: #1cb8c4;
+  --color-secondary: #5ef6ff;
+  --color-secondary-bright: #b8fcff;
+
+  --color-online-dim: #039b50;
+  --color-online: #05df72;
+  --color-online-bright: #7cffb8;
+
+  --color-error-dim: #7a2a26;
+  --color-error: #952f2b;
+  --color-error-bright: #e6514e;
+
+  --color-warning-dim: #a88400;
+  --color-warning: #fe9a00;
+  --color-warning-bright: #ffd38a;
 }
 
 @theme inline {
@@ -60,18 +80,28 @@ h3,
   letter-spacing: -4%;
 }
 
-@layer base {
-  a {
-    @apply transition duration-150;
+.site-background {
+  background-image: url("/images/city-background-mobile.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .site-background {
+    background-image: url("/images/city-background-desktop.webp");
   }
-  a:hover {
-    @apply text-hud-cyan;
+}
+
+@layer base {
+  .text-micro {
+    font-size: 4px;
   }
 }
 
 @layer components {
   .boot-terminal {
-    @apply relative border border-cyan-400/40 bg-slate-950/80 p-6 shadow-2xl backdrop-blur-sm md:p-10;
+    @apply relative border border-secondary/40 bg-slate-950/80 p-6 shadow-2xl backdrop-blur-sm md:p-10;
     box-shadow:
       0 0 30px rgb(34 211 238 / 0.08),
       inset 0 0 30px rgb(34 211 238 / 0.03);
@@ -101,15 +131,15 @@ h3,
   }
 
   .boot-input {
-    @apply min-h-12 border border-cyan-400/30 bg-black/40 px-4 py-3 font-mono text-sm text-cyan-100;
+    @apply min-h-12 border border-secondary/30 bg-black/40 px-4 py-3 font-mono text-sm text-secondary;
   }
 
   .boot-progress {
-    @apply h-1 overflow-hidden bg-cyan-950;
+    @apply h-1 overflow-hidden bg-secondary;
   }
 
   .boot-progress-bar {
-    @apply h-full bg-cyan-300 transition-[width] duration-700 ease-out;
+    @apply h-full bg-secondary transition-[width] duration-700 ease-out;
     box-shadow: 0 0 12px rgb(103 232 249 / 0.8);
   }
 }

@@ -1,0 +1,73 @@
+export const colourVariants = {
+  primary: {
+    cssVar: "var(--color-primary)",
+    cssVarDim: "var(--color-primary-dim)",
+    cssVarBright: "var(--color-primary-bright)",
+    text: "text-primary",
+    textDim: "text-primary-dim",
+    textBright: "text-primary-bright",
+    border: "border-primary",
+    borderDim: "border-primary-dim/40",
+    bg: "bg-primary/10",
+    bgDim: "bg-primary-dim/15",
+    hoverBg: "hover:bg-primary/20",
+  },
+
+  secondary: {
+    cssVar: "var(--color-secondary)",
+    cssVarDim: "var(--color-secondary-dim)",
+    cssVarBright: "var(--color-secondary-bright)",
+    text: "text-secondary",
+    textDim: "text-secondary-dim",
+    textBright: "text-secondary-bright",
+    border: "border-secondary",
+    borderDim: "border-secondary-dim/40",
+    bg: "bg-secondary/10",
+    bgDim: "bg-secondary-dim/15",
+    hoverBg: "hover:bg-secondary/20",
+  },
+
+  online: {
+    cssVar: "var(--color-online)",
+    cssVarDim: "var(--color-online-dim)",
+    cssVarBright: "var(--color-online-bright)",
+    text: "text-online",
+    textDim: "text-online-dim",
+    textBright: "text-online-bright",
+    border: "border-online",
+    borderDim: "border-online-dim/40",
+    bg: "bg-online/10",
+    bgDim: "bg-online-dim/15",
+    hoverBg: "hover:bg-online/20",
+  },
+
+  error: {
+    cssVar: "var(--color-error)",
+    cssVarDim: "var(--color-error-dim)",
+    cssVarBright: "var(--color-error-bright)",
+    text: "text-error",
+    textDim: "text-error-dim",
+    textBright: "text-error-bright",
+    border: "border-error",
+    borderDim: "border-error-dim/40",
+    bg: "bg-error/10",
+    bgDim: "bg-error-dim/15",
+    hoverBg: "hover:bg-error/20",
+  },
+
+  warning: {
+    cssVar: "var(--color-warning)",
+    cssVarDim: "var(--color-warning-dim)",
+    cssVarBright: "var(--color-warning-bright)",
+    text: "text-warning",
+    textDim: "text-warning-dim",
+    textBright: "text-warning-bright",
+    border: "border-warning",
+    borderDim: "border-warning-dim/40",
+    bg: "bg-warning/10",
+    bgDim: "bg-warning-dim/15",
+    hoverBg: "hover:bg-warning/20",
+  },
+} as const;
+
+export type ColourVariant = keyof typeof colourVariants;

@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { CSSProperties, ReactNode } from "react";
 import "./hud.css";
-
-type HudPanelVariant = "cyan" | "green" | "pink";
+import { colourVariants, type ColourVariant } from "@/lib/colourVariants";
 
 type BaseHudPanelProps = {
   title?: string;
   children?: ReactNode;
   className?: string;
-  variant?: HudPanelVariant;
+  variant?: ColourVariant;
   shimmer?: boolean;
+  effectsDetail?: ReactNode;
 };
 
 type HudPanelProps =
@@ -22,47 +22,51 @@ type HudPanelProps =
       href: string;
     });
 
-const variants: Record<HudPanelVariant, string> = {
-  cyan: "var(--color-hud-cyan)",
-  green: "var(--color-hud-green)",
-  pink: "var(--color-hud-pink)",
-};
+export type HudPanelVariant = ColourVariant;
 
 export default function HudPanel({
   title,
   children,
   className = "",
-  variant = "cyan",
+  variant = "secondary",
   asLink = false,
   href,
   shimmer,
+  effectsDetail,
 }: HudPanelProps) {
+  const colours = colourVariants[variant];
   const style = {
-    "--border": variants[variant],
+    "--border": colours.cssVar,
   } as CSSProperties;
 
   const classes = `
   hud-panel
   block
-  bg-hud-panel/75
-  transition-colors
-  duration-200
-  ${asLink ? "hud-panel-link hover:bg-hud-cyan/10!" : ""}
-  
+  border
+  ${colours.borderDim}
+  ${colours.bgDim}
+  ${asLink ? `hud-panel-link hover:bg-${variant}}/10!` : ""}
   ${className}
   backdrop-blur-xs
   shadow
+  transition-colors
+  duration-200
 `;
 
   const content = (
     <>
       {shimmer && <span className="hud-border-runner" aria-hidden="true" />}
       <div className="modal-scanline" />
-      {title && (
-        <h2 className="hud-title mb-4 border-b border-white/10 pb-2 text-sm text-hud-pink uppercase">
-          {title}
-        </h2>
-      )}
+      <header className="mb-4 border-b border-white/10 pb-2 flex flex-row items-center justify-between">
+        {title && (
+          <h2 className={`hud-title  text-sm uppercase ${colours.text}`}>
+            {title}
+          </h2>
+        )}
+        {effectsDetail && (
+          <div className="hud-effects-detail">{effectsDetail}</div>
+        )}
+      </header>
 
       <div className="hud-content">{children}</div>
     </>

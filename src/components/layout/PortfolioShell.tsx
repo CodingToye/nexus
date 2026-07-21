@@ -23,11 +23,11 @@ export default function PortfolioShell() {
 
     const bootTimer = window.setTimeout(() => {
       setSystemStatus("booting");
-    }, 4000);
+    }, 3000);
 
     const onlineTimer = window.setTimeout(() => {
       setSystemStatus("online");
-    }, 8000);
+    }, 4000);
 
     return () => {
       window.clearTimeout(authenticationTimer);
@@ -41,7 +41,7 @@ export default function PortfolioShell() {
   };
 
   return (
-    <main className="relative min-h-dvh overflow-x-clip p-6 text-cyan-100">
+    <main className="relative min-h-dvh overflow-x-clip p-6 text-secondary">
       <StatusBar status={systemStatus} />
 
       {systemStatus !== "online" ? (
@@ -58,31 +58,31 @@ export default function PortfolioShell() {
             xl:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)]
           "
           >
-            <div className="flex min-w-0 flex-col gap-8">
-              <div className="hud-module hud-module-delay-1 min-w-0">
-                <AgentProfile />
+            <div className="flex min-w-0 h-full flex-col gap-8">
+              <div className="hud-module hud-module-delay-1 min-w-0 flex-grow">
+                <AgentProfile variant="secondary" />
               </div>
 
-              <div className="hud-module hud-module-delay-2 min-w-0">
-                <OperationHistory />
+              <div className="hud-module hud-module-delay-2 min-w-0 flex-shrink">
+                <OperationHistory variant="primary" />
               </div>
             </div>
 
             <div className="hud-module hud-module-delay-3 min-w-0">
-              <MissionLog />
+              <MissionLog variant="online" />
             </div>
 
-            <div className="flex min-w-0 flex-col gap-8">
-              <div className="hud-module hud-module-delay-4 min-w-0">
-                <CurrentAssignment />
+            <div className="flex min-w-0 flex-col h-full gap-8">
+              <div className="hud-module hud-module-delay-4 min-w-0 flex-grow">
+                <CurrentAssignment variant="secondary" />
               </div>
 
-              <div className="hud-module hud-module-delay-5 min-w-0">
-                <InstalledModules />
+              <div className="hud-module hud-module-delay-5 min-w-0 flex-shrink">
+                <InstalledModules variant="primary" />
               </div>
 
-              <div className="hud-module hud-module-delay-6 min-w-0">
-                <VitalsPanel />
+              <div className="hud-module hud-module-delay-6 min-w-0 flex-shrink">
+                <VitalsPanel variant="error" />
               </div>
             </div>
           </div>

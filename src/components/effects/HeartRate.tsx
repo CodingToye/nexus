@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
+import { colourVariants, type ColourVariant } from "@/lib/colourVariants";
 
-type HeartRateVariant = "green" | "cyan" | "pink";
+type HeartRateVariant = ColourVariant;
 
 type HeartRateProps = {
   bpm?: number;
@@ -9,20 +10,15 @@ type HeartRateProps = {
   className?: string;
 };
 
-const variants: Record<HeartRateVariant, string> = {
-  green: "var(--color-hud-green)",
-  cyan: "var(--color-hud-cyan)",
-  pink: "var(--color-hud-pink)",
-};
-
 export default function HeartRate({
   bpm = 72,
   label = "Pulse",
-  variant = "green",
+  variant = "primary",
   className = "",
 }: HeartRateProps) {
+  const colours = colourVariants[variant];
   const style = {
-    "--heart-rate-color": variants[variant],
+    "--heart-rate-color": colours.cssVar,
   } as CSSProperties;
 
   return (

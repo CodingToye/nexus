@@ -48,12 +48,11 @@ export default function RootLayout({
       </head>
       <body className="relative min-h-dvh overflow-x-hidden bg-hud-bg h-full flex flex-col">
         <div className="fixed inset-0 -z-10">
+          <div className="site-background absolute inset-0" />
           <div
             className="
         absolute inset-0
-        bg-[url('/images/city-background.png')]
-        bg-cover
-        bg-center
+        bg-black/50
       "
           />
           <div className="absolute inset-0 bg-black/50" />
