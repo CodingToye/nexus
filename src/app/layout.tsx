@@ -28,6 +28,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#050b12",
 };
 
 export default function RootLayout({
@@ -46,9 +47,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
       </head>
-      <body className="relative min-h-dvh overflow-x-hidden bg-hud-bg h-full flex flex-col">
+      <body className="min-h-dvh overflow-x-hidden bg-[#050b12] antialiased">
         <div className="fixed inset-0 -z-10">
-          <div className="site-background absolute inset-0" />
+          <div className="site-background absolute inset-0 bg-[#050b12]" />
           <div
             className="
         absolute inset-0

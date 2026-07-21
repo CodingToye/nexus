@@ -52,12 +52,16 @@
 
 html {
   min-height: 100%;
+  background: #050b12;
+  overscroll-behavior: none;
 }
 
 body {
   min-height: 100dvh;
+  margin: 0;
+  background: #050b12;
   color: var(--foreground);
-  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
 }
 
 h1,
